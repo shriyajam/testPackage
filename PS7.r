@@ -47,13 +47,13 @@ library(roxygen2)
 
 #' Estimating Beta
 #'
-#' Calculates estimated beta hat i.e., the regression coefficients \eqn{\hat{\beta}} 
-#' using the equation: \eqn{\hat{\beta} = (X'X)^{-1} X' y}.
+#' Calculates estimated beta hat or reg coeffiients
+#' using the equation (X'X)^{-1} X' y} for beta hat.
 #' 
-#' @param X Numeric matrix of independent variables (n x k).
-#' @param y Numeric vector of dependent variable values (n x 1).
+#' @param X Numeric matrix of independent variables, n x k
+#' @param Y Numeric vector of dependent variable values, n x 1
 #' 
-#' @return Numeric vector of the coefficients \eqn{\hat{\beta}}.
+#' @return Numeric vector of the coefficients
 #' @export
 #'
 #' @examples
@@ -61,12 +61,12 @@ library(roxygen2)
 #' X <- cbind(1, c(1, 2, 3, 4, 5))
 #' y <- c(1, 2, 3, 4, 5)
 #' estimate_beta(X, y)
-estimate_beta <- function(X, y) {
+estimate_beta <- function(X, Y) {
   # get X'X inverse
   XXinverse <- solve(t(X) %*% X)
 
   # multiply X'X inverse by X'Y
-  XXinverseXY <- XXinverse %*% t(X) %*% y
+  XXinverseXY <- XXinverse %*% t(X) %*% Y
 
   # return the coefficients
   coefficients <- XXinverseXY
